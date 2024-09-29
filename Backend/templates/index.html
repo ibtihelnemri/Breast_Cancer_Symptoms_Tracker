@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Symptoms Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Toggle Button -->
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Your Symptom History</h2>
+            <ul class="symptom-list">
+                {% if symptoms %}
+                    {% for symptom_id, symptom_data in symptoms.items() %}
+                    <li class="symptom-title" onclick="showDetails('{{ symptom_id }}')">{{ symptom_data['title'] }}</li>
+                    {% endfor %}
+                {% else %}
+                    <p>No symptoms recorded yet.</p>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Breast Cancer Symptoms Tracker</h1>
+            <div class="content-area">
+                <!-- Form to enter new symptoms -->
+                <form action="/predict" method="POST">
+                    <label for="symptoms">Enter your symptoms:</label><br>
+                    <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="Enter your symptoms here..."></textarea><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+
+                <!-- Placeholder for prediction result -->
+                {% if result %}
+                    <div class="risk_assessment" id="risk_assessment">
+                        <h2>Prediction Result:</h2>
+                        <p>{{ result|safe }}</p>
+
+                        <!-- New feature: Question for doctor appointments -->
+                        <div id="appointment-question">
+                            <h3>Would you like me to help you find an appointment with a Doctor?</h3>
+                            <button type="button" onclick="handleYes()">Yes</button>
+                            <button type="button" onclick="handleNo()">No</button>
+                        </div>
+
+                        <!-- Specialty and City input fields, hidden by default -->
+                        <div id="location-inputs" style="display:none;">
+                            <label for="specialty">Enter the doctor's specialty:</label>
+                            <input type="text" id="specialty" name="specialty" placeholder="Enter specialty (e.g., mammographie)">
+                            <label for="city">Enter your city:</label>
+                            <input type="text" id="city" name="city" placeholder="Enter your city">
+                            <button type="button" onclick="getAppointments()">Find Appointments</button>
+                        </div>
+
+                        <!-- Display fetched appointments here -->
+                        <div id="appointments-list" style="display:none;">
+                            <h3>Available Doctor Appointments:</h3>
+                            <ul id="appointments"></ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Symptom Details (Shown when a title is clicked) -->
+                <div class="details-container" id="details-container">
+                    <h2>Details</h2>
+                    <div id="details">
+                        <p>Select a symptom title from the history to view the full details and prediction result.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to Toggle Sidebar -->
+    <script>
+        function toggleSidebar() {
+            const container = document.querySelector('.container');
+            container.classList.toggle('sidebar-active');
+        }
+
+        function showDetails(symptomId) {
+            fetch(`/get_symptom_details/${symptomId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const detailsDiv = document.getElementById('details');
+                    const predictionDiv = document.getElementById('risk_assessment');
+
+                    // Show symptom details in the details section
+                    detailsDiv.innerHTML = `
+                        <h3>Symptom Description:</h3>
+                        <p>${data.symptom}</p>
+                        <h4>Prediction Result:</h4>
+                        <p>${data.risk_assessment}</p>
+                    `;
+
+                    // Hide the current prediction result section when showing history details
+                    if (predictionDiv) {
+                        predictionDiv.style.display = 'none';
+                    }
+
+                    // Ensure that details are visible
+                    detailsDiv.style.display = 'block';
+                })
+                .catch(error => console.error('Error fetching details:', error));
+        }
+
+        // Handle "Yes" button click
+        function handleYes() {
+            document.getElementById('appointment-question').style.display = 'none';
+            document.getElementById('location-inputs').style.display = 'block';
+        }
+
+        // Handle "No" button click
+        function handleNo() {
+            document.getElementById('appointment-question').style.display = 'none';
+        }
+
+        // Function to get appointments based on specialty and city
+        function getAppointments() {
+            const specialty = document.getElementById('specialty').value;
+            const city = document.getElementById('city').value;
+
+            if (specialty && city) {
+                fetch(`/appointments?specialty=${specialty}&city=${city}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const appointmentList = document.getElementById('appointments');
+                        appointmentList.innerHTML = ''; // Clear previous results
+
+                        data.forEach(facility => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <strong>${facility.name}</strong><br>
+                                Address: ${facility.address}<br>
+                                <a href="${facility.link}" target="_blank">Book Appointment</a>
+                            `;
+                            appointmentList.appendChild(li);
+                        });
+
+                        document.getElementById('appointments-list').style.display = 'block'; // Show the list
+                    })
+                    .catch(error => console.error('Error fetching appointments:', error));
+            } else {
+                alert('Please enter both specialty and city.');
+            }
+        }
+
+        function showAppointments() {
+            const appointmentsList = document.getElementById('appointments-list');
+            appointmentsList.classList.add('active'); 
+        }
+
+        function hideAppointments() {
+            const appointmentsList = document.getElementById('appointments-list');
+            appointmentsList.classList.remove('active'); 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+{
+    "search_metadata": {
+      "id": "66f91e8a4a4a1d339e35155d",
+      "status": "Success",
+      "json_endpoint": "https://serpapi.com/searches/06ed6236c64f4178/66f91e8a4a4a1d339e35155d.json",
+      "created_at": "2024-09-29 09:31:54 UTC",
+      "processed_at": "2024-09-29 09:31:54 UTC",
+      "google_url": "https://www.google.com/search?q=Mammographie+doctors+in+Toulouse&oq=Mammographie+doctors+in+Toulouse&uule=w+CAIQICIZVG91bG91c2UsT2NjaXRhbmllLEZyYW5jZQ&hl=fr&gl=fr&sourceid=chrome&ie=UTF-8",
+      "raw_html_file": "https://serpapi.com/searches/06ed6236c64f4178/66f91e8a4a4a1d339e35155d.html",
+      "total_time_taken": 1.46
+    },
+    "search_parameters": {
+      "engine": "google",
+      "q": "Mammographie doctors in Toulouse",
+      "location_requested": "Toulouse",
+      "location_used": "Toulouse, Occitanie, France",
+      "google_domain": "google.com",
+      "hl": "fr",
+      "gl": "fr",
+      "device": "desktop"
+    },
+    "search_information": {
+      "query_displayed": "Mammographie doctors in Toulouse",
+      "total_results": 41300,
+      "time_taken_displayed": 0.34,
+      "organic_results_state": "Results for exact spelling"
+    },
+    "local_map": {
+      "image": "https://serpapi.com/searches/66f91e8a4a4a1d339e35155d/images/f7a84b6ebda1f954c65477dfef7857b2.png"
+    },
+    "local_results": {
+      "places": [
+        {
+          "position": 1,
+          "rating": 2.4,
+          "reviews": 140,
+          "title": "Centre De Radiologie d'Oc - Opticim",
+          "type": "Centre de radiologie",
+          "phone": "05 17 06 01 56",
+          "address": "18 Rue Maurice Fonvieille",
+          "hours": "Fermé ⋅ Ouvre à 08:00 lun.",
+          "place_id": "10974348433560749078",
+          "gps_coordinates": {
+            "latitude": 43.60378,
+            "longitude": 1.4492027
+          },
+          "links": {
+            "website": "https://opticim.org/cim-fonvieille/",
+            "directions": "https://www.google.com/maps/dir//Centre+De+Radiologie+d'Oc+-+Opticim,+18+Rue+Maurice+Fonvieille,+31000+Toulouse"
+          }
+        },
+        {
+          "position": 2,
+          "rating": 3.2,
+          "reviews": 290,
+          "title": "Centre de Radiologie et d'Imagerie médicale du Parc",
+          "type": "Centre d'imagerie pour diagnostic médical",
+          "phone": "05 61 36 66 05",
+          "address": "33 Rue des Bûchers",
+          "hours": "Fermé ⋅ Ouvre à 08:00 lun.",
+          "place_id": "11744683982057293830",
+          "gps_coordinates": {
+            "latitude": 43.590508,
+            "longitude": 1.443746
+          },
+          "links": {
+            "website": "http://www.radiologieduparc.com/",
+            "directions": "https://www.google.com/maps/dir//Centre+de+Radiologie+et+d'Imagerie+m%C3%A9dicale+du+Parc,+33+Rue+des+B%C3%BBchers,+31400+Toulouse"
+          }
+        },
+        {
+          "position": 3,
+          "rating": 3.7,
+          "reviews": 69,
+          "title": "Centre d'Imagerie Médicale Compans Caffarelli",
+          "type": "Médecin",
+          "phone": "05 61 22 60 80",
+          "address": "2 Rue de Sébastopol",
+          "hours": "Fermé ⋅ Ouvre à 08:00 lun.",
+          "place_id": "16121641857476200699",
+          "gps_coordinates": {
+            "latitude": 43.609627,
+            "longitude": 1.4301608
+          },
+          "links": {
+            "website": "http://radiologiecompans.fr/",
+            "directions": "https://www.google.com/maps/dir//Centre+d'Imagerie+M%C3%A9dicale+Compans+Caffarelli,+2+Rue+de+S%C3%A9bastopol,+31000+Toulouse"
+          }
+        }
+      ]
+    },
+    "related_questions": [
+      {
+        "question": "Où faire une échographie mammaire à Toulouse ?",
+        "title": "Échographie mammaire à Toulouse : prenez rendez-vous en ligne",
+        "link": "https://www.doctolib.fr/echographie-mammaire/toulouse"
+      },
+      {
+        "question": "Puis-je passer une mammographie sans ordonnance ?",
+        "snippet": "L'ordonnance est obligatoire pour passer une mammographie.",
+        "link": "https://www.centresante-squaremutualite.fr/offre-de-soins/mammographie"
+      }
+    ],
+    "answer_box": {
+      "type": "organic_result",
+      "title": "Mammographies - Clinique Rive Gauche",
+      "link": "https://www.clinique-rivegauche.fr/chirurgie-medecine/radiologie-irm-scanner/mammographies"
+    },
+    "organic_results": [
+      {
+        "position": 1,
+        "title": "Mammographies - Clinique Rive Gauche",
+        "link": "https://www.clinique-rivegauche.fr/chirurgie-medecine/radiologie-irm-scanner/mammographies",
+        "snippet": "Clinique Rive Gauche provides mammography services in Toulouse."
+      }
+    ],
+    "pagination": {
+      "current": 1,
+      "next": "https://www.google.com/search?q=Mammographie+doctors+in+Toulouse&start=10"
+    }
+  }
+   
